@@ -1,0 +1,78 @@
+/* Customer storefront. */
+.shop-layout {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 320px;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+
+.shop-toolbar { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+
+.search-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.chip:hover { background: var(--primary-soft); }
+.chip[aria-pressed='true'] { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+.product-card { display: flex; flex-direction: column; gap: 0.25rem; }
+.product-card h3 { font-size: 1rem; margin-bottom: 0; }
+.product-card p { margin: 0; }
+.product-card .btn,
+.product-card .qty-controls { margin-top: auto; padding-top: 0.5rem; }
+.product-card .btn { align-self: flex-start; }
+
+.muted { color: var(--muted); font-size: 0.9rem; }
+.price { font-weight: 700; color: var(--primary-dark); }
+.out-of-stock { color: #8a1f17; font-size: 0.9rem; font-weight: 600; }
+
+.btn-small { padding: 0.35rem 0.75rem; font-size: 0.9rem; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Compact cart: stays in view beside the products on laptops, drops below them on phones. */
+.cart { position: sticky; top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.cart h2 { margin-bottom: 0.25rem; }
+.cart p { margin: 0; }
+.cart-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 0.75rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--bg);
+  font-size: 0.95rem;
+}
+.cart-line > :last-child { grid-column: 2; justify-self: end; font-weight: 600; }
+.qty-controls { display: inline-flex; align-items: center; gap: 0.5rem; }
+.cart-total { font-weight: 700; padding-top: 0.5rem; }
+
+.panel .form-error, .panel .form-success { margin-bottom: 1rem; }
+.wrap-cell { white-space: normal; min-width: 14rem; }
+
+@media (max-width: 900px) {
+  .shop-layout { grid-template-columns: 1fr; }
+  .cart { position: static; }
+}

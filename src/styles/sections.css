@@ -1,0 +1,54 @@
+/* Home page sections: capabilities, steps, roles and the technology band. */
+.section-head { margin-bottom: 2rem; }
+.section-head .lead { margin-bottom: 0; }
+
+.home .card { border-radius: 20px; padding: 1.5rem; }
+.home .card p { color: var(--muted); margin-bottom: 0; }
+
+.feature-grid,
+.role-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-number { display: block; margin-bottom: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--teal); }
+
+/* How it works */
+.steps { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin: 0; padding: 0; list-style: none; }
+.step { padding: 0.25rem 0 0.25rem 1.5rem; border-left: 3px solid var(--teal); }
+.step p { color: var(--muted); margin-bottom: 0; }
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.75rem;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--cream);
+  font-weight: 700;
+}
+
+/* Roles */
+.role-card { display: flex; flex-direction: column; gap: 0.5rem; }
+.role-card p { flex: 1; }
+.role-card .btn { margin-top: 0.75rem; text-align: center; }
+.role-icon { font-size: 2rem; }
+.note { margin-top: 1.25rem; color: var(--muted); font-size: 0.95rem; }
+
+/* Technology band */
+.core-band {
+  padding: clamp(2rem, 6vw, 3.5rem);
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--navy), var(--teal-dark));
+}
+.core-band h2 { color: #fff; }
+.core-band .section-head p { margin: 0; color: #d3e3df; }
+.core-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 0; padding: 0; list-style: none; }
+.core-grid li { padding-top: 1rem; border-top: 2px solid rgba(255, 255, 255, 0.3); }
+.core-grid h3 { color: #fff; }
+.core-grid p { margin: 0; color: #d3e3df; font-size: 0.95rem; }

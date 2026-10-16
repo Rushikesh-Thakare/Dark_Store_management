@@ -1,0 +1,57 @@
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.login-card {
+  width: min(400px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-card form { display: flex; flex-direction: column; gap: 0.5rem; }
+.login-card label { font-weight: 600; font-size: 0.9rem; }
+
+.login-card input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.login-card .btn { margin-top: 0.5rem; }
+.login-card .btn:disabled { opacity: 0.6; cursor: wait; }
+.login-card a { color: var(--primary-dark); font-size: 0.9rem; }
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--primary-dark);
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-success {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+}
+
+.form-error {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: #fdecea;
+  color: #8a1f17;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,22 @@
+/* Rider task cards. */
+.task-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.task-card { display: flex; flex-direction: column; gap: 0.35rem; }
+.task-card p { margin: 0; }
+.task-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.task-head h3 { margin: 0; }
+
+.task-customer { font-weight: 700; font-size: 1.05rem; }
+.task-detail { color: var(--muted); }
+.task-detail a { color: var(--primary-dark); font-weight: 600; }
+
+.task-items { margin: 0.5rem 0; padding: 0.6rem 0.9rem 0.6rem 1.6rem; border-radius: 8px; background: var(--bg); font-size: 0.95rem; }
+.task-meta { color: var(--muted); font-size: 0.85rem; }
+.task-card .btn { margin-top: 0.75rem; }
+
+.task-section { margin: 2rem 0 1rem; }
+.muted { color: var(--muted); font-size: 0.9rem; }

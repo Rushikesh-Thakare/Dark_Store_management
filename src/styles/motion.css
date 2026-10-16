@@ -1,0 +1,41 @@
+/* Subtle home page motion. Everything here is switched off for people who prefer reduced motion. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* On load: hero copy rises in one piece at a time; the dashboard preview follows, its alert drifts. */
+.hero-copy > * { animation: rise 0.7s ease both; }
+.hero-copy > :nth-child(2) { animation-delay: 0.1s; }
+.hero-copy > :nth-child(3) { animation-delay: 0.2s; }
+.hero-copy > :nth-child(4) { animation-delay: 0.3s; }
+.hero-copy > :nth-child(5) { animation-delay: 0.4s; }
+
+.hero-visual { animation: rise 0.9s ease 0.2s both; }
+.preview-alert { animation: drift 5s ease-in-out infinite; }
+
+/* While scrolling: sections fade up as they enter the screen. Browsers without scroll-driven
+   animations simply show them normally. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+.home .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.home .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .home *,
+  .home *::before,
+  .home *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
