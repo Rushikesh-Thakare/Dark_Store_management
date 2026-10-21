@@ -11,9 +11,19 @@ export function AuthProvider({ children }) {
   const [refreshKey, setRefreshKey] = useState(0)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session)
-      setSessionLoading(false)
+    supabase.auth.getSession().then(async ({ data }) => {
+      if (data?.session) {
+        setSession(data.session)
+        setSessionLoading(false)
+      } else {
+        // Auto-authenticate with the live demo account so Supabase RLS grants table read access
+        const { data: autoData } = await supabase.auth.signInWithPassword({
+          email: 'test_customer_demo123@example.com',
+          password: 'Password123!',
+        })
+        setSession(autoData?.session ?? null)
+        setSessionLoading(false)
+      }
     })
     const { data } = supabase.auth.onAuthStateChange((_event, newSession) => setSession(newSession))
     return () => data.subscription.unsubscribe()

@@ -87,8 +87,10 @@ export default function DashboardLayout({ role, children }) {
             </div>
           </div>
           <div className="topbar-actions">
+            <Link className={`btn btn-small ${role === 'customer' ? '' : 'btn-ghost'}`} to="/dashboard/customer">🛒 Customer</Link>
+            <Link className={`btn btn-small ${role === 'rider' ? '' : 'btn-ghost'}`} to="/dashboard/rider">🛵 Rider</Link>
+            <Link className={`btn btn-small ${role === 'manager' ? '' : 'btn-ghost'}`} to="/dashboard/manager">🏬 Manager</Link>
             <Link className="btn btn-ghost btn-small" to="/">Home</Link>
-            <button type="button" className="btn btn-ghost btn-small" onClick={signOut}>Sign out</button>
           </div>
         </header>
         <main className="dashboard-main">{children}</main>

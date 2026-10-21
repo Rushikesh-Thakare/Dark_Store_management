@@ -162,7 +162,7 @@ export default function Home() {
                 <span className="role-icon" aria-hidden="true">{roleIcons[key]}</span>
                 <h3>{roles[key].title}</h3>
                 <p>{roles[key].description}</p>
-                <Link className="btn" to={`/login/${key}`}>Continue as {roles[key].title}</Link>
+                <Link className="btn" to={`/dashboard/${key}`}>Open {roles[key].title} Workspace</Link>
               </article>
             ))}
           </div>
