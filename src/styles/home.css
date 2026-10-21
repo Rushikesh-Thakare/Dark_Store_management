@@ -1,0 +1,157 @@
+/* Home page base: theme, typography, header and hero. Everything is scoped under .home so it cannot
+   leak into the dashboards or login page. The variables re-theme the shared .btn and .card styles here only. */
+.home {
+  --cream: #faf6ef;
+  --sand: #e9dfcb;
+  --navy: #12263f;
+  --teal: #0f6b66;
+  --teal-dark: #0a4f4b;
+  --teal-soft: #dcefeb;
+
+  --primary: var(--teal);
+  --primary-dark: var(--teal-dark);
+  --primary-soft: var(--teal-soft);
+  --text: var(--navy);
+  --muted: #52627a;
+  --border: #e6dcc8;
+  --surface: #fffdf8;
+  --shadow: 0 10px 30px rgba(18, 38, 63, 0.08);
+
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.home .container {
+  width: min(1120px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.home section.container { padding-block: clamp(2.5rem, 7vw, 5rem); }
+.home section[id] { scroll-margin-top: 4.5rem; } /* keeps headings clear of the sticky header */
+
+/* Typography */
+.home h1,
+.home h2,
+.home h3 { font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif; color: var(--navy); }
+.home h1 { font-size: clamp(2.5rem, 6.5vw, 4.25rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem; }
+.home h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.75rem; }
+.home h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.home .lead { font-size: clamp(1.05rem, 2vw, 1.2rem); color: var(--muted); max-width: 60ch; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; font-weight: 700; color: var(--teal); margin-bottom: 1rem; }
+
+/* Sticky header */
+.home-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 246, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 0.85rem; }
+
+.home .brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--navy); }
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 10px;
+  background: var(--navy);
+  color: var(--cream);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.home-nav { display: flex; gap: 1.75rem; }
+.home-nav a { color: var(--muted); font-weight: 600; text-decoration: none; }
+.home-nav a:hover { color: var(--teal); }
+
+/* Buttons on this page */
+.home .btn { border-radius: 999px; }
+.btn-lg { padding: 0.8rem 1.6rem; font-size: 1.05rem; }
+.home .btn-small { padding: 0.45rem 1.1rem; font-size: 0.9rem; }
+.home .btn-ghost { border-color: var(--navy); color: var(--navy); }
+.home .btn-ghost:hover { background: var(--navy); color: var(--cream); }
+
+/* Hero */
+.hero { display: grid; gap: 3rem; align-items: center; padding-top: clamp(1.5rem, 5vw, 3.5rem); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+
+.trust-row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 2rem 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.95rem; font-weight: 600; }
+.trust-row li::before { content: '✓'; margin-right: 0.4rem; color: var(--teal); font-weight: 700; }
+
+/* Dashboard preview: a decorative mock-up of the manager dashboard. */
+.hero-visual {
+  position: relative;
+  padding: clamp(1rem, 4vw, 2rem);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 15% 10%, var(--teal-soft), transparent 55%),
+    radial-gradient(circle at 90% 95%, var(--sand), transparent 55%),
+    #f3ecdd;
+}
+
+.preview {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.preview-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: var(--navy);
+  color: var(--cream);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.preview-bar::before { /* three window dots */
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+  background: #e8a54b;
+  box-shadow: 0.9rem 0 #7fc4b8, 1.8rem 0 #c9d4e0;
+  margin-right: 2.2rem;
+}
+
+.preview-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; padding: 1rem; }
+.preview-stats div { display: flex; flex-direction: column; padding: 0.6rem; border-radius: 10px; background: var(--teal-soft); }
+.preview-stats strong { font-size: 1.4rem; line-height: 1.1; color: var(--teal-dark); }
+.preview-stats span { font-size: 0.7rem; color: var(--muted); }
+
+.preview-rows { margin: 0; padding: 0 1rem 1rem; list-style: none; font-size: 0.85rem; }
+.preview-rows li { display: grid; grid-template-columns: 1fr 2.5rem auto; align-items: center; gap: 0.5rem; padding: 0.55rem 0; border-top: 1px solid var(--border); }
+.preview-badge { padding: 0.1rem 0.6rem; border-radius: 999px; background: var(--teal-soft); color: var(--teal-dark); font-size: 0.7rem; font-weight: 700; }
+.preview-badge-low { background: #fff3d6; color: #8a5a00; }
+
+.preview-alert {
+  position: absolute;
+  right: 1rem;
+  bottom: -1rem;
+  max-width: 85%;
+  margin: 0;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Two-column hero on wider screens; simplify the header on small ones. */
+@media (min-width: 900px) {
+  .hero { grid-template-columns: 1.1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .home-nav { display: none; }
+}
+@media (max-width: 420px) {
+  .home .brand { font-size: 0.95rem; }
+}

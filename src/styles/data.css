@@ -1,0 +1,132 @@
+.summary-grid {
+  display: grid;
+  gap: 1.15rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.4rem;
+  background: #ffffff;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.summary-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--teal-dark);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.summary-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+.panel {
+  margin-bottom: 2rem;
+}
+
+/* Scrollable Table Container */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  background: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+}
+
+th, td {
+  padding: 0.85rem 1.15rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background: var(--cream-soft);
+  color: var(--navy);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1.5px solid var(--border);
+}
+
+td {
+  border-bottom: 1px solid var(--border-light);
+  color: var(--navy);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #fbf9f5;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  white-space: normal;
+  padding: 2.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--cream-soft);
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.badge-ok, .badge-delivered {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.badge-warn, .badge-placed {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.badge-packed {
+  background: #e0e7ff;
+  color: #3730a3;
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.badge-out_for_delivery {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.badge-cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid rgba(185, 28, 28, 0.2);
+}
