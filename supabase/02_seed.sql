@@ -71,7 +71,3 @@ FROM (VALUES
     ('Sana Khan',   '9822222222')
 ) AS r (full_name, phone)
 CROSS JOIN dark_stores s;
-
--- Linking to Supabase Auth (do this after creating the users in Authentication > Users):
--- UPDATE customers SET auth_user_id = '<customer auth uuid>' WHERE full_name = 'Aarav Sharma';
--- UPDATE riders    SET auth_user_id = '<rider auth uuid>'    WHERE full_name = 'Rohan Patil';

@@ -16,6 +16,7 @@ SET search_path = public
 AS $$
 DECLARE
     v_order_id  INT;
+    v_rider_id  INT;
     v_item      RECORD;
     v_price     NUMERIC(10, 2);
     v_available INT;
@@ -39,9 +40,19 @@ BEGIN
         RAISE EXCEPTION 'Store % does not exist or is not active', p_store_id;
     END IF;
 
-    -- Step 4: create the order header; the total is filled in after the items.
-    INSERT INTO orders (customer_id, store_id)
-    VALUES (p_customer_id, p_store_id)
+    -- Step 4: pick a rider and create the order header; the total is filled in after the items.
+    -- The rider is the store's least busy rider who is not offline and can sign in (has an auth
+    -- account). If there is none, the order is still placed, just unassigned.
+    SELECT r.rider_id INTO v_rider_id
+    FROM riders r
+    WHERE r.store_id = p_store_id AND r.status <> 'offline' AND r.auth_user_id IS NOT NULL
+    ORDER BY (SELECT count(*) FROM orders o
+              WHERE o.rider_id = r.rider_id AND o.status IN ('placed', 'packed', 'out_for_delivery')),
+             r.rider_id
+    LIMIT 1;
+
+    INSERT INTO orders (customer_id, store_id, rider_id)
+    VALUES (p_customer_id, p_store_id, v_rider_id)
     RETURNING order_id INTO v_order_id;
 
     -- Step 5: handle each item. Sorting by product_id means two simultaneous orders lock

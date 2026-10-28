@@ -36,14 +36,23 @@ export function AuthProvider({ children }) {
     return () => { cancelled = true }
   }, [userId, refreshKey])
 
-  // Create the account, then let the database create the profile and customer/rider row for it.
+  // The chosen role and name are saved with the account. The role row itself is created by
+  // completeProfile() the first time the user is signed in, so it works even when email
+  // confirmation delays the first sign-in.
   async function signUp(role, fullName, email, password) {
-    const { data, error } = await supabase.auth.signUp({ email, password })
+    const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { role, full_name: fullName } } })
     if (error) return { error }
     // No session means the project requires email confirmation first.
-    if (!data.session) return { needsConfirmation: true }
-    const { error: registerError } = await supabase.rpc('register_account', { p_role: role, p_full_name: fullName })
-    if (registerError) return { error: registerError }
+    return data.session ? {} : { needsConfirmation: true }
+  }
+
+  // Creates the missing profile and customer/rider row (database function register_account,
+  // which refuses any role except customer and rider).
+  async function completeProfile(role) {
+    const { user } = session
+    const fullName = user.user_metadata.full_name || user.email.split('@')[0]
+    const { error } = await supabase.rpc('register_account', { p_role: role, p_full_name: fullName })
+    if (error) return { error }
     setProfile({ userId: null, role: null, error: null })
     setRefreshKey((key) => key + 1) // re-read the role now that the profile exists
     return {}
@@ -56,6 +65,7 @@ export function AuthProvider({ children }) {
     loading: sessionLoading || (Boolean(userId) && profile.userId !== userId),
     signIn: (email, password) => supabase.auth.signInWithPassword({ email, password }),
     signUp,
+    completeProfile,
     signOut: () => supabase.auth.signOut(),
   }
 
