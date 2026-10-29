@@ -15,11 +15,7 @@ BEGIN
 END;
 $$;
 
--- The trigger. The WHEN clause is the "crossing" rule:
---   OLD.current_stock > NEW.reorder_threshold   stock WAS above the threshold
---   NEW.current_stock <= NEW.reorder_threshold  stock IS NOW at or below it
--- Both must be true, so it fires once at the crossing, not on every later reduction
--- (5 -> 4 -> 3 fire nothing because the old value was already at or below the threshold).
+
 CREATE OR REPLACE TRIGGER trg_low_stock_alert
 AFTER UPDATE OF current_stock ON inventory
 FOR EACH ROW
